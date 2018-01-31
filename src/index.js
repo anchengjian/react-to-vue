@@ -54,7 +54,7 @@ module.exports = function transform (src, options) {
             process.exit()
           }
         } else if (node.type === 'ExportDefaultDeclaration') {
-          result.exportName = node.declaration.name ? node.declaration.name : node.declaration.id.name
+          result.exportName = node.declaration.name ? node.declaration.name : (node.declaration.id ? node.declaration.id.name : 'default')
         } else if (node.type === 'VariableDeclaration') {
           result.declaration.push(fileContent.slice(node.start, node.end))
         }
